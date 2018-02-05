@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hnust.dao.IUserDao">
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultType="com.cn.hnust.pojo.User">
+		SELECT id as id,
+		user_name as user_name,
+		password as
+		password,
+		age as age
+		from user_t
+		where id=#{id}
+	</select>
+
+	<insert id="insert" parameterType="com.cn.hnust.pojo.User">
+		insert into user_t
+		(id,user_name,password,age)
+		values(
+		#{id},#{user_name},#{password},#{age}
+		)
+	</insert>
+	<select id="getCount" resultType="java.lang.Integer" >
+		SELECT count(id)
+		from user_t
+	</select>
+
+	<select id="getUsers" resultType="com.cn.hnust.pojo.User" parameterType="com.cn.hnust.pojo.User">
+		SELECT id as id,
+		user_name as user_name,
+		password as
+		password,
+		age as age
+		from user_t
+		limit  #{startPos},#{pageSize} 
+	</select>
+	
+
+</mapper>
